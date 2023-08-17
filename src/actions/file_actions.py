@@ -24,8 +24,6 @@ def write_file(*paths: list, **kwargs: list) -> None:
 
     # write the file
     file = kwargs['file']
-    # print(f'path = [{path}]')
-    # print(f'file = [{file}]')
     try:
         File.write_file(file_path=path, data=file)
     except:

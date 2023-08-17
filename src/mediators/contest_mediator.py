@@ -21,11 +21,14 @@ class ContestMediator:
         for key in ArgumentParser.get_options():
             key = key.lower()
             value = ArgumentParser.get_value(key)
+            if key == 'help' or not hasattr(self.contest, key):
+                print(f'available options are: {list(self.attributes)}')
+                exit(0)
             if not hasattr(self.contest, key) or value is None:
                 continue
             setattr(self.contest, key, value[0])
         if getattr(self.contest, "name") is None:
-            print("Error: Enter the contest name")
+            print("Error: Enter the contest name with --name")
             exit(0)
         return self
 
