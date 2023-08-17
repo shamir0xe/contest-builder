@@ -12,7 +12,7 @@ class ContestMediator:
         self.contest = DataTransferObject()
         self.contest.site = Config.read("defaults.site")
         self.contest.name = Config.read("defaults.name", default=None)
-        self.contest.name_type = name_type_mapper(Config.read("defaults.name_type"))
+        self.contest.name_type = Config.read("defaults.name_type")
         self.contest.problem_cnt = Config.read("defaults.problem_cnt")
         self.contest.template_path = Config.read("defaults.template_path")
         return self
@@ -33,6 +33,8 @@ class ContestMediator:
         return self
 
     def generate(self) -> ContestMediator:
+        self.contest.name_type = name_type_mapper(self.contest.name_type)
+        print(f'generating the following contest\n\n{self.contest}')
         ContestGenerator() \
             .set_site(self.contest.site) \
             .set_folder(self.contest.name) \
@@ -42,4 +44,8 @@ class ContestMediator:
                 name_type=self.contest.name_type
             ) \
             .generate_inputs()
+        return self
+    
+    def closure(self) -> ContestMediator:
+        print(f'DONE')
         return self

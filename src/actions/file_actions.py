@@ -20,7 +20,7 @@ def write_file(*paths: list, **kwargs: list) -> None:
         pass
 
     # append the file to the path
-    path = os.path.join(path, paths[-1])
+    path = os.path.join(path, str(paths[-1]))
 
     # write the file
     file = kwargs['file']
