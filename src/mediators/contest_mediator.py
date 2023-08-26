@@ -9,7 +9,7 @@ from src.actions.name_type_mapper import name_type_mapper
 class ContestMediator:
     def read_configs(self) -> ContestMediator:
         self.attributes = Config.read("defaults").keys()
-        self.contest = DataTransferObject.from_dict(Config.read('defaults'))
+        self.contest = DataTransferObject.from_dict(Config.read("defaults"))
         return self
 
     def read_args(self) -> ContestMediator:
@@ -17,8 +17,8 @@ class ContestMediator:
             key = key.lower()
             value = ArgumentParser.get_value(key)
             # help option resolver
-            if key == 'help' or not hasattr(self.contest, key):
-                print(f'available options are: {list(self.attributes)}')
+            if key == "help" or not hasattr(self.contest, key):
+                print(f"available options are: {list(self.attributes)}")
                 exit(0)
             if value is None:
                 continue
@@ -30,18 +30,14 @@ class ContestMediator:
 
     def generate(self) -> ContestMediator:
         self.contest.name_type = name_type_mapper(self.contest.name_type)
-        print(f'generating the following contest\n\n{self.contest}')
-        ContestGenerator() \
-            .set_site(self.contest.site) \
-            .set_folder(self.contest.name) \
-            .read_template(self.contest.template_path) \
-            .generate_solutions(
-                count=int(self.contest.problem_cnt), 
-                name_type=self.contest.name_type
-            ) \
-            .generate_inputs()
+        print(f"generating the following contest\n\n{self.contest}")
+        ContestGenerator().set_site(self.contest.site).set_folder(
+            self.contest.name
+        ).read_template(self.contest.template_path).generate_solutions(
+            count=int(self.contest.problem_cnt), name_type=self.contest.name_type
+        ).generate_inputs()
         return self
-    
+
     def closure(self) -> ContestMediator:
-        print(f'DONE')
+        print("DONE")
         return self

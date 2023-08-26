@@ -1,8 +1,8 @@
 from __future__ import annotations
 from src.types.name_types import NameTypes
 from libs.pylib.file.file import File
-from src.actions.file_actions import (extract_extension, write_file)
-from src.actions.problem_actions import (create_problem_name)
+from src.actions.file_actions import extract_extension, write_file
+from src.actions.problem_actions import create_problem_name
 
 
 class ContestGenerator:
@@ -10,8 +10,8 @@ class ContestGenerator:
         self.site_name = site_name
         return self
 
-    def set_folder(self, folder_name: str) -> ContestGenerator:
-        self.folder_name = folder_name
+    def set_folder(self, contest_name: str) -> ContestGenerator:
+        self.contest_name = contest_name
         return self
 
     def read_template(self, path: str) -> ContestGenerator:
@@ -24,13 +24,23 @@ class ContestGenerator:
         self.name_type = name_type
         for i in range(count):
             problem_name = create_problem_name(i, name_type)
+            template = self.template
+            try:
+                # {problem_name}
+                # {problem_number} {total_problems}
+                # {site_name} {contest_name}
+                template = template.format(
+                    chr(ord("A") + i), i + 1, count, self.site_name, self.contest_name
+                )
+            except Exception:
+                pass
             # creating template
             write_file(
                 self.site_name,
-                self.folder_name,
+                self.contest_name,
                 problem_name,
                 f"{problem_name}.{self.ext}",
-                file=self.template
+                file=template,
             )
         return self
 
@@ -40,10 +50,10 @@ class ContestGenerator:
             # creating input file
             write_file(
                 self.site_name,
-                self.folder_name,
+                self.contest_name,
                 problem_name,
                 f"{problem_name}.in",
-                file=''
+                file="",
             )
 
         return self
