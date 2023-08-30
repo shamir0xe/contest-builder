@@ -6,4 +6,5 @@ def name_type_mapper(name: str) -> NameTypes:
     for name_type in NameTypes:
         if name == name_type.name.lower()[: len(name)]:
             return name_type
-    return None
+    # defaults to ALPHABETICAL
+    return NameTypes.ALPHABETICAL
