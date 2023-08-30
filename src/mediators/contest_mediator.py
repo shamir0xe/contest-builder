@@ -23,7 +23,7 @@ class ContestMediator:
             if value is None:
                 continue
             self.contest_data[key] = value[0]
-        if "name" not in self.contest_data is None:
+        if "name" not in self.contest_data or self.contest_data["name"] == "":
             print("Error: Enter the contest name with --name")
             exit(0)
         return self
