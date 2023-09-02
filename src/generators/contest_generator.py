@@ -3,6 +3,7 @@ from src.types.name_types import NameTypes
 from libs.pylib.file.file import File
 from src.actions.file_actions import extract_extension, write_file
 from src.actions.problem_actions import create_problem_name
+from src.actions.template_filler import template_filler
 
 
 class ContestGenerator:
@@ -24,16 +25,19 @@ class ContestGenerator:
         self.name_type = name_type
         for i in range(count):
             problem_name = create_problem_name(i, name_type)
-            template = self.template
-            try:
-                # {problem_name}
-                # {problem_number} {total_problems}
-                # {site_name} {contest_name}
-                template = template.format(
-                    chr(ord("A") + i), i + 1, count, self.site_name, self.contest_name
-                )
-            except Exception:
-                pass
+            # {problem_name}
+            # {problem_number}
+            # {total_problems}
+            # {site_name}
+            # {contest_name}
+            template = template_filler(
+                self.template,
+                chr(ord("A") + i),
+                str(i + 1),
+                str(count),
+                self.site_name,
+                self.contest_name,
+            )
             # creating template
             write_file(
                 self.site_name,
