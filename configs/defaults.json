@@ -2,6 +2,6 @@
     "name": "",
     "site": "codeforces",
     "name_type": "alphabetical",
-    "problem_cnt": "5",
-    "template_path": "py-template.py"
+    "problem_cnt": "4",
+    "template_path": "cpp-template.cpp"
 }

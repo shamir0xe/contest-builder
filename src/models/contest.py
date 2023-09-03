@@ -14,3 +14,6 @@ class Contest(DataTransferObject):
 
     def name_type_mapper(self, key: str) -> NameTypes:
         return name_type_mapper(key)
+
+    def name_mapper(self, name: str) -> str:
+        return name.lower()
