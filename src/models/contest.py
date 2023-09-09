@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass
 from src.actions.name_type_mapper import name_type_mapper
 from libs.pylib.data.data_transfer_object import DataTransferObject
@@ -16,4 +17,11 @@ class Contest(DataTransferObject):
         return name_type_mapper(key)
 
     def name_mapper(self, name: str) -> str:
-        return name.lower()
+        name = name.lower()
+        name = re.sub(r"(\(|\)|\[|\])", " ", name)
+        name = re.sub(r"(\.|\\|\/|\,|\:|\;|\'|\")", " ", name)
+        name = re.sub(r"\s+", "-", name.strip())
+        name = re.sub(r"\-+", "-", name)
+        name = re.sub(r"div\-(\d+)", r"div\1", name)
+        name = re.sub(r"\-(\+|\>|\<)\-", r"\1", name)
+        return name

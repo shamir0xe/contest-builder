@@ -13,16 +13,15 @@ class ContestMediator:
         return self
 
     def read_args(self) -> ContestMediator:
-        for key in ArgumentParser.get_options():
+        for key, value in ArgumentParser.get_options(option_prefix="--").items():
             key = key.lower()
-            value = ArgumentParser.get_value(key)
             # help option resolver
             if key == "help" or not hasattr(Contest, key):
                 print(f"available options are: {self.attributes}")
                 exit(0)
-            if value is None:
+            if value == "":
                 continue
-            self.contest_data[key] = value[0]
+            self.contest_data[key] = value
         if "name" not in self.contest_data or self.contest_data["name"] == "":
             print("Error: Enter the contest name with --name")
             exit(0)
