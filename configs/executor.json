@@ -1,0 +1,16 @@
+{
+    "extension_mapper": {
+        "cpp": ["cpp", "hpp"],
+        "python": ["py"]
+    },
+    "commands": {
+        "cpp": {
+            "compile": "g++ {} -o out -O2",
+            "run": "./out"
+        },
+        "python": {
+            "run": "python3 {} < {}"
+        }
+    }
+}
+
