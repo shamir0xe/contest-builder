@@ -1,4 +1,10 @@
 import os
+from src.helpers.folder.folder_helper import FolderHelper
+from src.actions.extension_mapper import extension_mapper
+from src.helpers.model.config.local_config import LocalConfig
+from src.types.languages import Languages
+from src.types.providers import Providers
+from libs.pylib.config.config import Config
 from libs.pylib.file.file import File
 
 
@@ -10,21 +16,27 @@ def extract_extension(path: str) -> str:
 
 
 def write_file(*paths: str, **kwargs) -> None:
+    # extracting filename
+    filename = paths[-1]
+    paths = paths[:-1]
+
     # generating directories recursively
-    path = ""
-    for cur_path in paths[:-1]:
-        path = os.path.join(path, str(cur_path))
-    try:
-        os.makedirs(path)
-    except Exception:
-        pass
+    FolderHelper.create_path(*paths)
 
     # append the file to the path
-    path = os.path.join(path, str(paths[-1]))
+    path = os.path.join(*paths, filename)
 
     # write the file
     file = kwargs["file"]
     try:
         File.write_file(file_path=path, data=file)
     except Exception:
-        print(f"coudlnt create [{path}] file")
+        print(f"could'nt create [{path}] file")
+
+
+def read_template(provider: Providers, language: Languages) -> str:
+    cfg = Config.read("defaults.config.local")
+    paths: list[str] = LocalConfig.read(
+        f"{cfg}.templates.{provider.value}.{extension_mapper(language)}"
+    )
+    return File.read_file(os.path.join(*paths))

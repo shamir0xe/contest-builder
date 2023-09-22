@@ -1,0 +1,9 @@
+{
+    "defaults": {
+        "name": "",
+        "provider": "codeforces",
+        "verdict": "",
+        "language": "cpp"
+    }
+}
+

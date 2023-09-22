@@ -29,7 +29,6 @@ class ContestMediator:
 
     def generate(self) -> ContestMediator:
         contest: Contest = Contest().from_dict(self.contest_data)
-
         print(f"generating the following contest\n\n{contest}")
         ContestGenerator().set_site(contest.site).set_folder(
             contest.name
