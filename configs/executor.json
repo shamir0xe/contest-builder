@@ -5,7 +5,7 @@
     },
     "commands": {
         "cpp": {
-            "compile": "g++ {} -o out -O2",
+            "compile": "g++ -std=c++17 -O2 {} -o out",
             "run": "./out"
         },
         "python": {

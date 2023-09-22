@@ -7,4 +7,4 @@ def language_finder(name: str) -> Languages:
         return Languages.CPP
     if name == "py" or name.count("python") >= 1:
         return Languages.PYTHON
-    return Languages.TXT
+    return Languages.CPP

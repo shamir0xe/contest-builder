@@ -7,4 +7,4 @@ def extension_mapper(language: Languages) -> str:
         return "cpp"
     if language is Languages.PYTHON:
         return "py"
-    return "txt"
+    return "cpp"

@@ -3,6 +3,7 @@ from libs.pylib.file.file import File
 from src.models.problem import Problem
 from src.types.languages import Languages
 from src.types.name_types import NameTypes
+from src.actions.extension_mapper import extension_mapper
 
 
 def create_problem_name(idx: int, name_type: NameTypes) -> str:
@@ -23,12 +24,13 @@ def set_problem_language(problem: Problem) -> Languages:
         for language in Languages:
             if extension in Config.read(f"executor.extension_mapper.{language.value}"):
                 problem.language = language
-                problem.extension = extension
                 return language
     raise Exception("Solution not found!")
 
 
 def set_problem_name(problem: Problem) -> str:
-    filename = File.get_all_files(directory=problem.path, ext=problem.extension)[0]
-    problem.name = filename[:filename.rfind('.')]
+    filename = File.get_all_files(
+        directory=problem.path, ext=extension_mapper(problem.language)
+    )[0]
+    problem.name = filename[: filename.rfind(".")]
     return problem.name

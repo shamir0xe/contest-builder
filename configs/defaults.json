@@ -3,7 +3,7 @@
     "site": "codeforces",
     "name_type": "alphabetical",
     "problem_cnt": "4",
-    "template_path": "cpp-template.cpp",
+    "template_path": "template.cpp",
     "config": {
         "local": "cb-cfg"
     },
