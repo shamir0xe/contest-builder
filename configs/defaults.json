@@ -1,9 +1,9 @@
 {
     "name": "",
-    "site": "codeforces",
+    "provider": "codeforces",
+    "language": "cpp",
     "name_type": "alphabetical",
-    "problem_cnt": "4",
-    "template_path": "template.cpp",
+    "problem_cnt": 4,
     "config": {
         "local": "cb-cfg"
     },

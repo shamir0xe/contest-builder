@@ -14,9 +14,9 @@ from libs.pylib.data.data_transfer_object import DataTransferObject
 class Problem(DataTransferObject):
     name: str = ""
     verdict: str = ""
+    problem_set: str = ""
     provider: Providers = Providers.CODEFORCES
     language: Languages = Languages.CPP
-    problem_set: str = ""
     path: str = "."
 
     def name_mapper(self, name: str) -> str:
