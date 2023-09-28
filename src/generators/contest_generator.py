@@ -20,11 +20,11 @@ class ContestGenerator:
 
     def build_path(self) -> ContestGenerator:
         self.contest.path = os.path.join(self.contest.provider.value, self.contest.name)
+        print(f"generating the following contest\n\n{self.contest}")
         return self
 
     def generate_solutions(self) -> ContestGenerator:
         # generating solutions
-        print(f"generating the following contest\n\n{self.contest}")
         # solution file extension
         extension = extension_mapper(self.contest.language)
         for i in range(self.contest.problem_cnt):
