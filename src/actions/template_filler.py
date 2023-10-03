@@ -13,8 +13,8 @@ def template_filler(template: str, *args: str) -> str:
             if cnt > 0:
                 try:
                     line = line.format(*args[taken:taken+cnt])
+                    taken += cnt
                 except Exception as e:
                     print(e)
-                taken += cnt
         page += line
     return page

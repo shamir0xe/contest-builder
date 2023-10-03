@@ -1,7 +1,7 @@
 import os
 from src.helpers.folder.folder_helper import FolderHelper
 from src.actions.extension_mapper import extension_mapper
-from src.helpers.model.config.local_config import LocalConfig
+from src.helpers.config.local_config import LocalConfig
 from src.types.languages import Languages
 from src.types.providers import Providers
 from libs.pylib.config.config import Config
@@ -36,7 +36,10 @@ def write_file(*paths: str, **kwargs) -> None:
 
 def read_template(provider: Providers, language: Languages) -> str:
     cfg = Config.read("defaults.config.local")
-    paths: list[str] = LocalConfig.read(
-        f"{cfg}.templates.{provider.value}.{extension_mapper(language)}"
-    )
+    template_path = f"{cfg}.templates.{provider.value}.{extension_mapper(language)}"
+    try:
+        paths: list[str] = LocalConfig.read(template_path)
+    except Exception as e:
+        print(e)
+        exit(0)
     return File.read_file(os.path.join(*paths))
