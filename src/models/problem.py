@@ -1,12 +1,8 @@
 from __future__ import annotations
 import os
 from dataclasses import dataclass
-from src.actions.problem_name_mapper import problem_name_mapper
 from src.types.languages import Languages
 from src.types.providers import Providers
-from src.actions.provider_finder import provider_finder
-from src.actions.language_finder import language_finder
-from src.actions.extension_mapper import extension_mapper
 from libs.pylib.data.data_transfer_object import DataTransferObject
 
 

@@ -1,4 +1,5 @@
 from typing import Any
+from libs.pylib.config.config import Config
 from libs.pylib.file.file import File
 from libs.pylib.json.json_helper import JsonHelper
 
@@ -18,9 +19,5 @@ class LocalConfig:
 
     @staticmethod
     def read(selector: str) -> Any:
-        index = selector.find(".")
-        if index < 0:
-            return LocalConfig(selector).get()
-        filename = selector[:index]
-        selector = selector[index + 1 :]
+        filename = Config.read('main.config.local')
         return LocalConfig(filename).get(selector)

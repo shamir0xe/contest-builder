@@ -1,0 +1,91 @@
+{
+    "contest": {
+        "provider": "codeforces",
+        "language": "cpp",
+        "name_type": "alphabetical",
+        "problem_cnt": 4
+    },
+    "problem": {
+        "provider": "codeforces",
+        "language": "cpp"
+    },
+    "executor": {
+        "commands": {
+            "cpp": {
+                "compile": "g++ -std=c++17 -O2 {} -o out",
+                "run": "./out"
+            },
+            "python": {
+                "run": "python3 {} < {}"
+            }
+        }
+    },
+    "providers": {
+        "leetcode": [
+            "leetcode",
+            "lc",
+            "leet"
+        ],
+        "codeforces": [
+            "codeforces",
+            "cf",
+            "code"
+        ]
+    },
+    "languages": {
+        "cpp": {
+            "extensions": [
+                "cpp",
+                "hpp"
+            ]
+        },
+        "python": {
+            "extensions": [
+                "py"
+            ]
+        }
+    },
+    "problemset": {
+        "folder": {
+            "name": "problemset"
+        }
+    },
+    "templates": {
+        "leetcode": {
+            "cpp": [
+                "templates",
+                "leetcode",
+                "template.cpp"
+            ],
+            "python": [
+                "templates",
+                "leetcode",
+                "template.py"
+            ]
+        },
+        "codeforces": {
+            "cpp": [
+                "templates",
+                "codeforces",
+                "template.cpp"
+            ],
+            "python": [
+                "templates",
+                "codeforces",
+                "template.py"
+            ]
+        },
+        "defaults": {
+            "cpp": [
+                "templates",
+                "codeforces",
+                "template.cpp"
+            ],
+            "python": [
+                "templates",
+                "codeforces",
+                "template.py"
+            ]
+        }
+    }
+}
