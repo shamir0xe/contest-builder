@@ -1,8 +1,11 @@
 from __future__ import annotations
 import os
-from dataclasses import dataclass
-from src.types.languages import Languages
-from src.types.providers import Providers
+from dataclasses import dataclass, field
+from src.helpers.model.finders.language_finder import LanguageFinder
+from src.helpers.model.finders.provider_finder import ProviderFinder
+from src.helpers.model.problem_helper import ProblemHelper
+from src.models.provider import Provider
+from src.models.language import Language
 from libs.pylib.data.data_transfer_object import DataTransferObject
 
 
@@ -11,25 +14,28 @@ class Problem(DataTransferObject):
     name: str = ""
     verdict: str = ""
     problem_set: str = ""
-    provider: Providers = Providers.CODEFORCES
-    language: Languages = Languages.CPP
+    provider: Provider = field(default_factory=ProviderFinder.default)
+    language: Language = field(default_factory=LanguageFinder.default)
     path: str = "."
 
     def name_mapper(self, name: str) -> str:
-        return problem_name_mapper(name)
+        return ProblemHelper.problem_name_mapper(name)
 
-    def provider_mapper(self, provider: str) -> Providers:
+    def provider_mapper(self, provider: str) -> Provider:
         # set provider name
-        return provider_finder(provider)
+        return ProviderFinder.by_abbreviation(provider)
 
-    def language_mapper(self, language: str) -> Languages:
+    def language_mapper(self, language: str) -> Language:
         # set the language
-        return language_finder(language)
+        return LanguageFinder.by_abbreviation(language)
+
+    @staticmethod
+    def modifiables() -> list[str]:
+        return ["name", "provider", "language"]
 
     @property
     def full_name(self) -> str:
-        extension = extension_mapper(self.language)
-        return os.path.join(self.path, f"{self.name}.{extension}")
+        return os.path.join(self.path, f"{self.name}.{self.language.ext}")
 
     @property
     def full_input_name(self) -> str:

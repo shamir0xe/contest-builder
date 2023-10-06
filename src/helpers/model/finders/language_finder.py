@@ -1,10 +1,31 @@
-from src.types.languages import Languages
+from src.helpers.config.local_config import LocalConfig
+from src.models.language import Language
 
 
-def language_finder(name: str) -> Languages:
-    name = name.lower()
-    if name == "cpp" or name == "c++" or name == "seepp":
-        return Languages.CPP
-    if name == "py" or name.count("python") >= 1:
-        return Languages.PYTHON
-    return Languages.CPP
+class LanguageFinder:
+    @staticmethod
+    def by_name(name: str) -> Language:
+        return list(
+            filter(lambda language: name == language.name, LanguageFinder.all())
+        )[0]
+
+    @staticmethod
+    def by_abbreviation(abbreviation: str) -> Language:
+        return list(
+            filter(
+                lambda language: abbreviation in language.abbreviations,
+                LanguageFinder.all(),
+            )
+        )[0]
+
+    @staticmethod
+    def all() -> list[Language]:
+        res = []
+        languages = LocalConfig.read("languages")
+        for language, properties in languages.items():
+            res.append(Language(name=language).from_dict(properties))
+        return res
+
+    @staticmethod
+    def default() -> Language:
+        return LanguageFinder.by_name(LocalConfig.read("problem.language"))

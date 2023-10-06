@@ -1,10 +1,8 @@
 import os
-from src.helpers.model.language_helper import LanguageHelper
+from src.models.language import Language
+from src.models.provider import Provider
 from src.helpers.folder.folder_helper import FolderHelper
 from src.helpers.config.local_config import LocalConfig
-from src.types.languages import Languages
-from src.types.providers import Providers
-from libs.pylib.config.config import Config
 from libs.pylib.file.file import File
 from libs.pylib.buffer_io.buffer_reader import BufferReader
 from libs.pylib.buffer_io.string_buffer import StringBuffer
@@ -39,15 +37,10 @@ class FileHelper:
             print(e)
 
     @staticmethod
-    def read_template(provider: Providers, language: Languages) -> str:
-        cfg = Config.read("defaults.config.local")
-        template_path = f"{cfg}.templates.{provider.value}.\
-        {LanguageHelper.extension_mapper(language)}"
-        try:
-            paths: list[str] = LocalConfig.read(template_path)
-        except Exception as e:
-            print(e)
-            exit(0)
+    def read_template(provider: Provider, language: Language) -> str:
+        paths: list[str] = LocalConfig.read(
+            f"templates.{provider.name}.{language.name}"
+        )
         return File.read_file(os.path.join(*paths))
 
     @staticmethod

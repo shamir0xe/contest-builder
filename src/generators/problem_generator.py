@@ -1,10 +1,8 @@
 from __future__ import annotations
 import os
 from dataclasses import dataclass
-from src.actions.extension_mapper import extension_mapper
-from src.actions.template_filler import template_filler
+from src.helpers.file.file_helper import FileHelper
 from src.models.problem import Problem
-from src.actions.file_actions import read_template, write_file
 
 
 @dataclass
@@ -12,7 +10,7 @@ class ProblemGenerator:
     problem: Problem
 
     def read_template(self) -> ProblemGenerator:
-        self.template = read_template(
+        self.template = FileHelper.read_template(
             provider=self.problem.provider, language=self.problem.language
         )
         return self
@@ -20,7 +18,7 @@ class ProblemGenerator:
     def build_path(self, problem_set: str) -> ProblemGenerator:
         self.problem.problem_set = problem_set
         self.problem.path = os.path.join(
-            self.problem.provider.value, problem_set, self.problem.name
+            self.problem.provider.name, problem_set, self.problem.name
         )
         return self
 
@@ -32,24 +30,24 @@ class ProblemGenerator:
         # {total_problems}
         # {site_name}
         # {contest_name}
-        solution = template_filler(
+        solution = FileHelper.template_filler(
             self.template,
             self.problem.name,
             str(1),
             str(1),
-            self.problem.provider.value,
+            self.problem.provider.name,
             self.problem.problem_set,
         )
         # creating the solution
-        write_file(
+        FileHelper.write_file(
             self.problem.path,
-            f"main.{extension_mapper(self.problem.language)}",
+            f"main.{self.problem.language.ext}",
             file=solution,
         )
         return self
 
     def generate_input(self) -> ProblemGenerator:
-        write_file(
+        FileHelper.write_file(
             self.problem.path,
             "main.in",
             file="",

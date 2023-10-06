@@ -6,7 +6,7 @@
         "problem_cnt": 4
     },
     "problem": {
-        "provider": "codeforces",
+        "provider": "local",
         "language": "cpp"
     },
     "executor": {
@@ -21,25 +21,44 @@
         }
     },
     "providers": {
-        "leetcode": [
-            "leetcode",
-            "lc",
-            "leet"
-        ],
-        "codeforces": [
-            "codeforces",
-            "cf",
-            "code"
-        ]
+        "codeforces": {
+            "abbreviations": [
+                "codeforces",
+                "cf",
+                "code"
+            ]
+        },
+        "leetcode": {
+            "abbreviations": [
+                "leetcode",
+                "lc",
+                "leet"
+            ]
+        },
+        "local": {
+            "abbreviations": [
+                "local"
+            ]
+        }
     },
     "languages": {
         "cpp": {
+            "abbreviations": [
+                "cpp",
+                "c++",
+                "seepp"
+            ],
             "extensions": [
                 "cpp",
                 "hpp"
             ]
         },
         "python": {
+            "abbreviations": [
+                "python",
+                "py",
+                "python3"
+            ],
             "extensions": [
                 "py"
             ]
@@ -75,7 +94,7 @@
                 "template.py"
             ]
         },
-        "defaults": {
+        "local": {
             "cpp": [
                 "templates",
                 "codeforces",

@@ -1,10 +1,31 @@
-from src.types.providers import Providers
+from src.helpers.config.local_config import LocalConfig
+from src.models.provider import Provider
 
 
-def provider_finder(name: str) -> Providers:
-    name = name.lower()
-    if name == "lc" or name.count("leetcode") >= 1:
-        return Providers.LEETCODE
-    if name == "cf" or name.count("codeforces") >= 1:
-        return Providers.CODEFORCES
-    return Providers.LOCAL
+class ProviderFinder:
+    @staticmethod
+    def by_name(name: str) -> Provider:
+        return list(
+            filter(lambda provider: name == provider.name, ProviderFinder.all())
+        )[0]
+
+    @staticmethod
+    def by_abbreviation(abbreviation: str) -> Provider:
+        return list(
+            filter(
+                lambda provider: abbreviation in provider.abbreviations,
+                ProviderFinder.all(),
+            )
+        )[0]
+
+    @staticmethod
+    def all() -> list[Provider]:
+        res = []
+        providers = LocalConfig.read("providers")
+        for provider, properties in providers.items():
+            res.append(Provider(name=provider).from_dict(properties))
+        return res
+
+    @staticmethod
+    def default() -> Provider:
+        return ProviderFinder.by_name(LocalConfig.read("problem.provider"))
