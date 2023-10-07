@@ -1,11 +1,10 @@
-from dataclasses import dataclass
-from src.actions.language_finder import language_finder
-from src.actions.provider_finder import provider_finder
-from src.actions.name_type_mapper import name_type_mapper
-from src.actions.problem_name_mapper import problem_name_mapper
+from dataclasses import dataclass, field
+from src.helpers.model.finders.language_finder import LanguageFinder
+from src.helpers.model.finders.provider_finder import ProviderFinder
+from src.helpers.model.problem_helper import ProblemHelper
+from src.models.language import Language
+from src.models.provider import Provider
 from src.types.name_types import NameTypes
-from src.types.languages import Languages
-from src.types.providers import Providers
 from libs.pylib.data.data_transfer_object import DataTransferObject
 
 
@@ -14,23 +13,27 @@ class Contest(DataTransferObject):
     name_type: NameTypes = NameTypes.ALPHABETICAL
     name: str = ""
     problem_cnt: int = 0
-    provider: Providers = Providers.CODEFORCES
-    language: Languages = Languages.CPP
+    provider: Provider = field(default_factory=ProviderFinder.default)
+    language: Language = field(default_factory=LanguageFinder.default)
     path: str = "."
+
+    @staticmethod
+    def modifiables() -> list[str]:
+        return ["name", "provider", "language", "problem_cnt", "name_type"]
 
     def problem_cnt_mapper(self, number: int | str) -> int:
         return int(number)
 
     def name_type_mapper(self, key: str) -> NameTypes:
-        return name_type_mapper(key)
+        return ProblemHelper.name_type_mapper(key)
 
     def name_mapper(self, name: str) -> str:
-        return problem_name_mapper(name)
+        return ProblemHelper.problem_name_mapper(name)
 
-    def provider_mapper(self, provider: str) -> Providers:
+    def provider_mapper(self, provider: str) -> Provider:
         # set provider name
-        return provider_finder(provider)
+        return ProviderFinder.by_abbreviation(provider)
 
-    def language_mapper(self, language: str) -> Languages:
+    def language_mapper(self, language: str) -> Language:
         # set the language
-        return language_finder(language)
+        return LanguageFinder.by_abbreviation(language)

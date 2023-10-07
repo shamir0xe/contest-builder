@@ -1,15 +1,14 @@
 from __future__ import annotations
+from src.helpers.config.local_config import LocalConfig
 from src.helpers.terminal.arg_helper import ArgHelper
-from src.helpers.model.model_helper import ModelHelper
 from src.generators.contest_generator import ContestGenerator
 from src.models.contest import Contest
-from libs.pylib.config.config import Config
 
 
 class ContestMediator:
     def read_configs(self) -> ContestMediator:
-        self.attributes = ModelHelper.get_model_attributes(Contest)
-        self.contest_data = Config.read("defaults")
+        self.attributes = Contest.modifiables()
+        self.contest_data = LocalConfig.read("contest")
         return self
 
     def read_args(self) -> ContestMediator:

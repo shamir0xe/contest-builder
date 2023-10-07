@@ -1,4 +1,4 @@
-# from src.mediators.contest_mediator import ContestMediator
+from src.mediators.contest_mediator import ContestMediator
 from src.mediators.execution_mediator import ExecutionMediator
 from src.mediators.problem_mediator import ProblemMediator
 from src.mediators.init_mediator import InitMediator
@@ -18,5 +18,4 @@ if __name__ == "__main__":
         ProblemMediator().read_configs().read_args().generate().closure()
     else:
         # calling contest mediator
-        # ContestMediator().read_configs().read_args().generate().closure()
-        pass
+        ContestMediator().read_configs().read_args().generate().closure()
