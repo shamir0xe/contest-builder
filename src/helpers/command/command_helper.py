@@ -1,15 +1,15 @@
-from libs.pylib.config.config import Config
+from src.helpers.config.local_config import LocalConfig
 
 
 class CommandHelper:
     @staticmethod
     def cpp_compile_command():
-        return Config.read("executor.commands.cpp.compile")
+        return LocalConfig.read("executor.commands.cpp.compile")
 
     @staticmethod
     def cpp_run_command():
-        return Config.read("executor.commands.cpp.run")
+        return LocalConfig.read("executor.commands.cpp.run")
 
     @staticmethod
     def python_run_command():
-        return Config.read("executor.commands.python.run")
+        return LocalConfig.read("executor.commands.python.run")

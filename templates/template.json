@@ -16,7 +16,7 @@
                 "run": "./out"
             },
             "python": {
-                "run": "python3 {} < {}"
+                "run": "python3 {}"
             }
         }
     },

@@ -1,9 +1,10 @@
 from abc import ABC, abstractmethod
 from collections.abc import Callable
 from dataclasses import dataclass
-from libs.pylib.buffer_io.buffer_writer import BufferWriter
+from src.models.language import Language
 from src.helpers.utils.timer import Timer
 from src.models.problem import Problem
+from libs.pylib.buffer_io.buffer_writer import BufferWriter
 
 
 @dataclass
@@ -17,6 +18,11 @@ class Executor(ABC):
     def execute(self):
         pass
 
+    @staticmethod
+    @abstractmethod
+    def language() -> Language:
+        pass
+
     def attach_log(self, log: str) -> None:
         self.writer.write_line(f"\t{log}")
 
@@ -25,7 +31,7 @@ class Executor(ABC):
             if self.status == 0:
                 self.timer = Timer()
                 callable()
-                self.attach_log(f"time elapsed = {self.timer.timestamp()}") 
+                self.attach_log(f"time elapsed = {self.timer.timestamp()}")
 
     def handle_output(self, output: str) -> None:
         if len(output) > 0:

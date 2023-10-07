@@ -13,14 +13,14 @@ class ProblemActions:
             for language in LanguageFinder.all():
                 if extension in language.extensions:
                     problem.language = language
+                    problem.language.ext = extension
                     return language
         raise Exception("Solution not found!")
 
     @staticmethod
     def set_problem_name(problem: Problem) -> str:
-        filename = File.get_all_files(
-            directory=problem.path,
-            ext=problem.language.ext
-        )[0]
+        filename = File.get_all_files(directory=problem.path, ext=problem.language.ext)[
+            0
+        ]
         problem.name = filename[: filename.rfind(".")]
-        return problem.name 
+        return problem.name

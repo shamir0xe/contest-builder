@@ -40,3 +40,6 @@ class Problem(DataTransferObject):
     @property
     def full_input_name(self) -> str:
         return os.path.join(self.path, f"{self.name}.in")
+    
+    def __str__(self) -> str:
+        return self.full_name

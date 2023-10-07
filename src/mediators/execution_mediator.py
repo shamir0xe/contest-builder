@@ -1,16 +1,13 @@
 from __future__ import annotations
-from libs.pylib.buffer_io.standard_output_buffer import StandardOutputBuffer
+from src.actions.problem_actions import ProblemActions
 from src.executors.program_excecutor import ProgramExecutor
-from libs.pylib.buffer_io.buffer_writer import BufferWriter
 from src.models.problem import Problem
+from libs.pylib.buffer_io.standard_output_buffer import StandardOutputBuffer
+from libs.pylib.buffer_io.buffer_writer import BufferWriter
 from libs.pylib.argument.argument_parser import ArgumentParser
-from src.actions.problem_actions import set_problem_name, set_problem_language
 
 
 class ExecutionMediator:
-    def __init__(self) -> None:
-        pass
-
     def read_configs(self) -> ExecutionMediator:
         return self
 
@@ -25,13 +22,14 @@ class ExecutionMediator:
         return self
 
     def extract_language(self) -> ExecutionMediator:
-        set_problem_language(self.problem)
+        ProblemActions.set_problem_language(self.problem)
         return self
 
     def extract_name(self) -> ExecutionMediator:
-        set_problem_name(self.problem)
+        ProblemActions.set_problem_name(self.problem)
         return self
 
     def execute(self) -> ExecutionMediator:
+        print(f'going to execute {self.problem}')
         ProgramExecutor(self.problem, BufferWriter(StandardOutputBuffer())).exe()
         return self
