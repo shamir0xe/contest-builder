@@ -6,7 +6,7 @@ from src.helpers.model.finders.provider_finder import ProviderFinder
 from src.helpers.model.problem_helper import ProblemHelper
 from src.models.provider import Provider
 from src.models.language import Language
-from libs.pylib.data.data_transfer_object import DataTransferObject
+from pylib_0xe.data.data_transfer_object import DataTransferObject
 
 
 @dataclass

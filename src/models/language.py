@@ -1,28 +1,40 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from libs.pylib.data.data_transfer_object import DataTransferObject
+from typing import List
+
+from pylib_0xe.data.data_transfer_object import DataTransferObject
 
 
 @dataclass
 class Language(DataTransferObject):
+    """Represents a programming language."""
+
     name: str = ""
-    abbreviations: list[str] = field(default_factory=list)
-    extensions: list[str] = field(default_factory=list)
+    abbreviations: List[str] = field(default_factory=list)
+    extensions: List[str] = field(default_factory=list)
 
     def name_mapper(self, name: str) -> str:
+        """Map the language name to lowercase."""
         return name.lower()
 
-    def extensions_mapper(self, ext_list: list[str]) -> list[str]:
-        return list(map(lambda ext: ext.lower(), ext_list))
+    def extensions_mapper(self, ext_list: List[str]) -> List[str]:
+        """Map each extension to lowercase."""
+        return [ext.lower() for ext in ext_list]
 
     @property
     def ext(self) -> str:
-        return self.extensions[0]
+        """Get the first extension in lowercase."""
+        return self.extensions[0].lower() if self.extensions else ""
 
     @ext.setter
-    def ext(self, value) -> None:
-        while self.extensions[0] != value:
-            self.extensions = [*self.extensions[1:], self.extensions[0]]
+    def ext(self, value: str) -> None:
+        """Set the first extension to the specified value."""
+        if value in self.extensions:
+            while self.extensions[0] != value:
+                self.extensions = [*self.extensions[1:], self.extensions[0]]
 
-    def __eq__(self, __value: Language) -> bool:
-        return self.name == __value.name
+    def __eq__(self, other: object) -> bool:
+        """Check if two Language objects are equal."""
+        if not isinstance(other, Language):
+            return False
+        return self.name == other.name
