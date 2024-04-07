@@ -15,7 +15,7 @@ class LocalConfig:
             found = True
             try:
                 self.json = File.read_json(f"{filename}.json")
-            except Exception as e:
+            except Exception:
                 filename = os.path.join("..", filename)
                 found = False
 
