@@ -28,31 +28,37 @@ class Contest(DataTransferObject):
         """
         return ["name", "provider", "language", "problem_cnt", "name_type"]
 
-    def problem_cnt_mapper(self, number: int | str) -> int:
+    @staticmethod
+    def problem_cnt_mapper(number: int | str) -> int:
         """
         Mapper function for problem count.
         """
         return int(number)
 
-    def name_type_mapper(self, key: str) -> NameTypes:
+    @staticmethod
+    def name_type_mapper(key: str) -> NameTypes:
         """
         Mapper function for name types.
         """
         return ProblemHelper.name_type_mapper(key)
 
-    def name_mapper(self, name: str) -> str:
+    @staticmethod
+    def name_mapper(name: str) -> str:
         """
         Mapper function for contest name.
         """
         return ProblemHelper.problem_name_mapper(name)
 
-    def provider_mapper(self, provider: str) -> Provider:
+    @staticmethod
+    def provider_mapper(provider: str) -> Provider:
         """
         Mapper function for contest provider.
         """
+        print(f"getting provider mapper {provider}")
         return ProviderFinder.by_abbreviation(provider)
 
-    def language_mapper(self, language: str) -> Language:
+    @staticmethod
+    def language_mapper(language: str) -> Language:
         """
         Mapper function for contest language.
         """

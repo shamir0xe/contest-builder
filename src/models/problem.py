@@ -21,19 +21,22 @@ class Problem(DataTransferObject):
     language: Language = field(default_factory=LanguageFinder.default)
     path: str = "."
 
-    def name_mapper(self, name: str) -> str:
+    @staticmethod
+    def name_mapper(name: str) -> str:
         """
         Mapper function for problem name.
         """
         return ProblemHelper.problem_name_mapper(name)
 
-    def provider_mapper(self, provider: str) -> Provider:
+    @staticmethod
+    def provider_mapper(provider: str) -> Provider:
         """
         Mapper function for problem provider.
         """
         return ProviderFinder.by_abbreviation(provider)
 
-    def language_mapper(self, language: str) -> Language:
+    @staticmethod
+    def language_mapper(language: str) -> Language:
         """
         Mapper function for problem language.
         """

@@ -11,15 +11,16 @@ class Provider(DataTransferObject):
     name: str
     abbreviations: list[str] = field(default_factory=list)
 
-    def name_mapper(self, name: str) -> str:
+    @staticmethod
+    def name_mapper(name: str) -> str:
         """
         Mapper function for provider name.
         """
         return name.lower()
 
-    def abbreviations_mapper(self, abbr_list: list[str]) -> list[str]:
+    @staticmethod
+    def abbreviations_mapper(abbr_list: list[str]) -> list[str]:
         """
         Mapper function for provider abbreviations.
         """
-        print(f"abbr_list: {abbr_list}")
         return [abbr.lower() for abbr in abbr_list]

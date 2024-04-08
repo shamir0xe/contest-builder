@@ -12,11 +12,13 @@ class Language(DataTransferObject):
     abbreviations: List[str] = field(default_factory=list)
     extensions: List[str] = field(default_factory=list)
 
-    def name_mapper(self, name: str) -> str:
+    @staticmethod
+    def name_mapper(name: str) -> str:
         """Map the language name to lowercase."""
         return name.lower()
 
-    def extensions_mapper(self, ext_list: List[str]) -> List[str]:
+    @staticmethod
+    def extensions_mapper(ext_list: List[str]) -> List[str]:
         """Map each extension to lowercase."""
         return [ext.lower() for ext in ext_list]
 
