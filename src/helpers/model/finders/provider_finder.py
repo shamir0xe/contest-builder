@@ -5,27 +5,38 @@ from src.models.provider import Provider
 class ProviderFinder:
     @staticmethod
     def by_name(name: str) -> Provider:
-        return list(
-            filter(lambda provider: name == provider.name, ProviderFinder.all())
-        )[0]
+        filtered = ProviderFinder.filter_providers(
+            lambda provider: name == provider.name
+        )
+        return ProviderFinder.get_single_provider(filtered, name)
 
     @staticmethod
     def by_abbreviation(abbreviation: str) -> Provider:
-        return list(
-            filter(
-                lambda provider: abbreviation in provider.abbreviations,
-                ProviderFinder.all(),
-            )
-        )[0]
+        filtered = ProviderFinder.filter_providers(
+            lambda provider: abbreviation in provider.abbreviations
+        )
+        return ProviderFinder.get_single_provider(filtered, abbreviation)
 
     @staticmethod
     def all() -> list[Provider]:
-        res = []
         providers = LocalConfig.read("providers")
-        for provider, properties in providers.items():
-            res.append(Provider(name=provider).from_dict(properties))
-        return res
+        return [
+            Provider.from_dict({"name": provider, **properties})
+            for provider, properties in providers.items()
+        ]
 
     @staticmethod
     def default() -> Provider:
-        return ProviderFinder.by_name(LocalConfig.read("problem.provider"))
+        problem_provider = LocalConfig.read("problem.provider")
+        print(f"local config for problem.provider: {problem_provider}")
+        return ProviderFinder.by_name(problem_provider)
+
+    @staticmethod
+    def filter_providers(predicate) -> list[Provider]:
+        return list(filter(predicate, ProviderFinder.all()))
+
+    @staticmethod
+    def get_single_provider(filtered: list[Provider], search_criteria: str) -> Provider:
+        if not filtered:
+            raise Exception(f"No valid provider found by {search_criteria}")
+        return filtered[0]
