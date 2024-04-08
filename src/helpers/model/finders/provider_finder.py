@@ -28,8 +28,7 @@ class ProviderFinder:
     @staticmethod
     def default() -> Provider:
         problem_provider = LocalConfig.read("problem.provider")
-        print(f"local config for problem.provider: {problem_provider}")
-        return ProviderFinder.by_name(problem_provider)
+        return ProviderFinder.by_abbreviation(problem_provider)
 
     @staticmethod
     def filter_providers(predicate) -> list[Provider]:

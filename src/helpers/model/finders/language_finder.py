@@ -28,7 +28,7 @@ class LanguageFinder:
     @staticmethod
     def default() -> Language:
         problem_language = LocalConfig.read("problem.language")
-        return LanguageFinder.by_name(problem_language)
+        return LanguageFinder.by_abbreviation(problem_language)
 
     @staticmethod
     def filter_languages(predicate) -> list[Language]:
