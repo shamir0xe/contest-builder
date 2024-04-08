@@ -22,7 +22,7 @@ class ContestMediator:
         return self
 
     def generate(self) -> ContestMediator:
-        contest: Contest = Contest().from_dict(self.contest_data)
+        contest: Contest = Contest.from_dict(self.contest_data)
         ContestGenerator(
             contest=contest
         ).read_template().build_path().generate_solutions().generate_inputs()

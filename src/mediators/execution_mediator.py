@@ -15,11 +15,9 @@ class ExecutionMediator:
         value = ArgumentParser.get_value("run", option_prefix="--")
         if value is not None:
             # retrieving the problem based on the given name
-            print(f'read_arg value: {value}')
             self.problem = Problem.from_dict({"path": value})
         else:
             # finding problem base on directory
-            print('read_arg without value')
             self.problem = Problem()
         return self
 

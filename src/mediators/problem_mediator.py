@@ -22,7 +22,7 @@ class ProblemMediator:
         return self
 
     def generate(self) -> ProblemMediator:
-        problem = Problem().from_dict(self.problem_data)
+        problem = Problem.from_dict(self.problem_data)
         print(f"generating the following problem: {problem}")
         ProblemGenerator(problem=problem).read_template().build_path(
             problem_set=LocalConfig.read("problemset.folder.name")
