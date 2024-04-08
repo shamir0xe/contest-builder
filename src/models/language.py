@@ -1,7 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List
-
 from pylib_0xe.data.data_transfer_object import DataTransferObject
 
 

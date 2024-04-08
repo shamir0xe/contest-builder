@@ -8,7 +8,7 @@ class Provider(DataTransferObject):
     Represents a provider.
     """
 
-    name: str = ""
+    name: str
     abbreviations: list[str] = field(default_factory=list)
 
     def name_mapper(self, name: str) -> str:
@@ -21,4 +21,5 @@ class Provider(DataTransferObject):
         """
         Mapper function for provider abbreviations.
         """
+        print(f"abbr_list: {abbr_list}")
         return [abbr.lower() for abbr in abbr_list]

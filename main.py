@@ -1,4 +1,3 @@
-from functools import partial
 from src.mediators.contest_mediator import ContestMediator
 from src.mediators.execution_mediator import ExecutionMediator
 from src.mediators.problem_mediator import ProblemMediator
@@ -7,31 +6,37 @@ from pylib_0xe.argument.argument_parser import ArgumentParser
 
 ARG_PREFIX = "--"
 
-# Mapping command-line options to handler functions
-option_handlers = {
-    "init": partial(
-        InitMediator().read_configs().create_local_config().create_templates().closure
-    ),
-    "run": partial(
-        ExecutionMediator()
-        .read_configs()
-        .read_args()
-        .extract_language()
-        .extract_name()
-        .execute
-    ),
-    "problem": partial(ProblemMediator().read_configs().read_args().generate().closure),
-    "contest": partial(ContestMediator().read_configs().read_args().generate().closure),
-}
+
+def handle_init():
+    """Handle initialization."""
+    InitMediator().read_configs().create_local_config().create_templates().closure()
+
+
+def handle_run():
+    """Handle program execution."""
+    ExecutionMediator().read_configs().read_args().extract_language().extract_name().execute()
+
+
+def handle_problem():
+    """Handle problem solving."""
+    ProblemMediator().read_configs().read_args().generate().closure()
+
+
+def handle_contest():
+    """Handle contest management."""
+    ContestMediator().read_configs().read_args().generate().closure()
 
 
 def main():
     """Main function."""
-    option = ArgumentParser.get_option(option_prefix=ARG_PREFIX)
-    if option in option_handlers:
-        option_handlers[option]()
+    if ArgumentParser.is_option("init", option_prefix=ARG_PREFIX):
+        handle_init()
+    elif ArgumentParser.is_option("run", option_prefix=ARG_PREFIX):
+        handle_run()
+    elif ArgumentParser.is_option("problem", option_prefix=ARG_PREFIX):
+        handle_problem()
     else:
-        print("Invalid option")
+        handle_contest()
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ from __future__ import annotations
 from src.helpers.config.local_config import LocalConfig
 from src.helpers.file.file_helper import FileHelper
 from src.helpers.config.templates import Templates
-from libs.pylib.config.config import Config
+from src.helpers.config.config import Config
 
 
 class InitMediator:

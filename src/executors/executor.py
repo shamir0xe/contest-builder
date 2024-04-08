@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from src.models.language import Language
 from src.helpers.utils.timer import Timer
 from src.models.problem import Problem
-from libs.pylib.buffer_io.buffer_writer import BufferWriter
+from pylib_0xe.buffer_io.buffer_writer import BufferWriter
 
 
 @dataclass

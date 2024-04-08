@@ -1,8 +1,8 @@
 from typing import Any
 import os
-from libs.pylib.config.config import Config
-from libs.pylib.file.file import File
-from libs.pylib.json.json_helper import JsonHelper
+from src.helpers.config.config import Config
+from pylib_0xe.file.file import File
+from pylib_0xe.json.json_helper import JsonHelper
 
 
 class LocalConfig:
@@ -11,13 +11,19 @@ class LocalConfig:
         filename: str,
     ) -> None:
         found = False
-        while not found:
-            found = True
-            try:
-                self.json = File.read_json(f"{filename}.json")
-            except Exception:
-                filename = os.path.join("..", filename)
-                found = False
+        try:
+            while not found:
+                found = True
+                try:
+                    self.json = File.read_json(f"{filename}.json")
+                except Exception:
+                    filename = os.path.join("..", filename)
+                    found = False
+        except Exception:
+            raise Exception(
+                "Please provide a local config file by running \
+                'contest-builder --init' command"
+            )
 
     def get(self, selector: str = "", default: Any = None) -> Any:
         value = JsonHelper.selector_get_value(self.json, selector)

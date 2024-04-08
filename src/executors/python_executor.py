@@ -1,9 +1,9 @@
-from libs.pylib.file.file import File
 from src.helpers.model.finders.language_finder import LanguageFinder
 from src.models.language import Language
 from src.helpers.terminal.single_process import SingleProcess
 from src.helpers.command.command_helper import CommandHelper
 from src.executors.executor import Executor
+from pylib_0xe.file.file import File
 
 
 class PythonExecutor(Executor):

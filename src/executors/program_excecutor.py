@@ -2,7 +2,7 @@ from src.executors.cpp_executor import CppExecutor
 from src.executors.python_executor import PythonExecutor
 from src.executors.executor import Executor
 from src.models.problem import Problem
-from libs.pylib.buffer_io.buffer_writer import BufferWriter
+from pylib_0xe.buffer_io.buffer_writer import BufferWriter
 
 
 class ProgramExecutor:

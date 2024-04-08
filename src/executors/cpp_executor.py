@@ -3,7 +3,7 @@ from src.models.language import Language
 from src.helpers.terminal.single_process import SingleProcess
 from src.helpers.command.command_helper import CommandHelper
 from src.executors.executor import Executor
-from libs.pylib.file.file import File
+from pylib_0xe.file.file import File
 
 
 class CppExecutor(Executor):

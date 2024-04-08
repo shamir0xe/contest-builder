@@ -3,9 +3,9 @@ from src.models.language import Language
 from src.models.provider import Provider
 from src.helpers.folder.folder_helper import FolderHelper
 from src.helpers.config.local_config import LocalConfig
-from libs.pylib.file.file import File
-from libs.pylib.buffer_io.buffer_reader import BufferReader
-from libs.pylib.buffer_io.string_buffer import StringBuffer
+from pylib_0xe.file.file import File
+from pylib_0xe.buffer_io.buffer_reader import BufferReader
+from pylib_0xe.buffer_io.string_buffer import StringBuffer
 
 
 class FileHelper:

@@ -2,9 +2,9 @@ from __future__ import annotations
 from src.actions.problem_actions import ProblemActions
 from src.executors.program_excecutor import ProgramExecutor
 from src.models.problem import Problem
-from libs.pylib.buffer_io.standard_output_buffer import StandardOutputBuffer
-from libs.pylib.buffer_io.buffer_writer import BufferWriter
-from libs.pylib.argument.argument_parser import ArgumentParser
+from pylib_0xe.buffer_io.standard_output_buffer import StandardOutputBuffer
+from pylib_0xe.buffer_io.buffer_writer import BufferWriter
+from pylib_0xe.argument.argument_parser import ArgumentParser
 
 
 class ExecutionMediator:
@@ -15,9 +15,11 @@ class ExecutionMediator:
         value = ArgumentParser.get_value("run", option_prefix="--")
         if value is not None:
             # retrieving the problem based on the given name
-            self.problem = Problem().from_dict({"path": value})
+            print(f'read_arg value: {value}')
+            self.problem = Problem.from_dict({"path": value})
         else:
             # finding problem base on directory
+            print('read_arg without value')
             self.problem = Problem()
         return self
 
