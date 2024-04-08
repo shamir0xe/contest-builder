@@ -1,6 +1,6 @@
 from __future__ import annotations
 from dataclasses import dataclass, field
-from libs.pylib.argument.argument_parser import ArgumentParser
+from pylib_0xe.argument.argument_parser import ArgumentParser
 
 
 @dataclass
