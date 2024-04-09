@@ -2,6 +2,7 @@ from src.mediators.contest_mediator import ContestMediator
 from src.mediators.execution_mediator import ExecutionMediator
 from src.mediators.problem_mediator import ProblemMediator
 from src.mediators.init_mediator import InitMediator
+from src.helpers.terminal.cat_helper import CatHelper
 from pylib_0xe.argument.argument_parser import ArgumentParser
 
 ARG_PREFIX = "--"
@@ -27,6 +28,11 @@ def handle_contest():
     ContestMediator().read_configs().read_args().generate().closure()
 
 
+def handle_help():
+    """Handle help command"""
+    CatHelper.meow()
+
+
 def main():
     """Main function."""
     if ArgumentParser.is_option("init", option_prefix=ARG_PREFIX):
@@ -35,8 +41,10 @@ def main():
         handle_run()
     elif ArgumentParser.is_option("problem", option_prefix=ARG_PREFIX):
         handle_problem()
-    else:
+    elif ArgumentParser.is_option("name", option_prefix=ARG_PREFIX):
         handle_contest()
+    else:
+        handle_help()
 
 
 if __name__ == "__main__":
