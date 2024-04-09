@@ -18,6 +18,10 @@ Contest Builder is a Python tool designed to simplify the process of managing pr
 
 * [Installation](#installation)
 * [Usage](#usage)
+  * [Initializing The Workspace](#initializing-the-workspace)
+  * [Generating Contest Structure](#generating-contest-structure)
+  * [Compiling and Running Solutions](#compiling-and-running-solutions)
+  * [Creating Structure for Single Problem](#creating-structure-for-single-problem)
 * [Configuration](#configuration)
 * [Contributing](#contributing)
 * [License](#license)
@@ -34,20 +38,20 @@ pip install contest-builder
 
 ## Usage
 
-0. Initializing The Workspace
+### Initializing The Workspace
 
-   In order to specify the template files and default options for the future, you need to initialize a folder inorder
-   to store the files of the contest over there.
+In order to specify the template files and default options for the future, you need to initialize a folder inorder
+to store the files of the contest over there.
 
 ```bash
 contest-builder --init
 ```
 
 - this will generate:
-  1. A config file named cb-config.josn, and
-  1. A template folder to put your own language specific templates there.
+  1. A config file named `cb-config.json`, and
+  1. A `templates` folder which stores language specific templates.
 
-1. Generating Contest Structure
+### Generating Contest Structure
 
 To generate the folder and file structure for a contest, use the contest-builder command with the `--name` option:
 
@@ -77,7 +81,7 @@ contest-builder --name "Codeforces Round 938 (Div. 3)" --problem_cnt 8 --languag
 
 You can set your desired abbreviations for languages and contest providers in the `cb-config`.
 
-2. Compiling and Running Solutions
+### Compiling and Running Solutions
 
 To compile and run a solution for a specific problem, use the contest-builder command with the --run option:
 
@@ -96,7 +100,7 @@ Example:
 contest-builder --run a
 ```
 
-3. Creating Structure for Single Problem
+### Creating Structure for Single Problem
 
    You can also create the folder and file structure for a single problem using the contest-builder command with the `--problem` option:
 
@@ -117,9 +121,10 @@ corresponding input as well.
 
 ## Configuration
 
-Contest Builder allows you to customize templates for generating solution files. You can modify these templates according to your preferences by editing the template files located in the templates directory.
+Contest Builder allows you to customize templates for generating solution files. You can modify these templates according to your 
+preferences by editing the template files located in the `templates` directory or adding the new ones for other languages.
 
-Also you need to edit the `compile` and `run` sections in the config file as you want to be done.
+Also you need to edit the `compile` and `run` sections in the config file as you wish.
 
 ## Contributing
 
