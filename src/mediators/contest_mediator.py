@@ -1,8 +1,8 @@
 from __future__ import annotations
-from src.helpers.config.local_config import LocalConfig
-from src.helpers.terminal.arg_helper import ArgHelper
-from src.generators.contest_generator import ContestGenerator
-from src.models.contest import Contest
+from ..helpers.config.local_config import LocalConfig
+from ..helpers.terminal.arg_helper import ArgHelper
+from ..generators.contest_generator import ContestGenerator
+from ..models.contest import Contest
 
 
 class ContestMediator:

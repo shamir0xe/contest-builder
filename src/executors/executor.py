@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
 from collections.abc import Callable
 from dataclasses import dataclass
-from src.models.language import Language
-from src.helpers.utils.timer import Timer
-from src.models.problem import Problem
+from ..models.language import Language
+from ..helpers.utils.timer import Timer
+from ..models.problem import Problem
 from pylib_0xe.buffer_io.buffer_writer import BufferWriter
 
 

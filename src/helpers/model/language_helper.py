@@ -1,4 +1,4 @@
-from src.types.languages import Languages
+from ...types.languages import Languages
 
 
 class LanguageHelper:

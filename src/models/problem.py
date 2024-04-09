@@ -1,10 +1,10 @@
 from dataclasses import dataclass, field
 import os
-from src.helpers.model.finders.language_finder import LanguageFinder
-from src.helpers.model.finders.provider_finder import ProviderFinder
-from src.helpers.model.problem_helper import ProblemHelper
-from src.models.provider import Provider
-from src.models.language import Language
+from ..helpers.model.finders.language_finder import LanguageFinder
+from ..helpers.model.finders.provider_finder import ProviderFinder
+from ..helpers.model.problem_helper import ProblemHelper
+from ..models.provider import Provider
+from ..models.language import Language
 from pylib_0xe.data.data_transfer_object import DataTransferObject
 
 

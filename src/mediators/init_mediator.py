@@ -1,8 +1,8 @@
 from __future__ import annotations
-from src.helpers.config.local_config import LocalConfig
-from src.helpers.file.file_helper import FileHelper
-from src.helpers.config.templates import Templates
-from src.helpers.config.config import Config
+from ..helpers.config.local_config import LocalConfig
+from ..helpers.file.file_helper import FileHelper
+from ..helpers.config.templates import Templates
+from ..helpers.config.config import Config
 
 
 class InitMediator:

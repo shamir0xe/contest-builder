@@ -1,4 +1,4 @@
-from src.helpers.terminal.arg_helper import ArgHelper
+from ...helpers.terminal.arg_helper import ArgHelper
 
 
 class CatHelper:

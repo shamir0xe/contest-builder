@@ -1,8 +1,8 @@
 from __future__ import annotations
-from src.helpers.config.local_config import LocalConfig
-from src.generators.problem_generator import ProblemGenerator
-from src.models.problem import Problem
-from src.helpers.terminal.arg_helper import ArgHelper
+from ..helpers.config.local_config import LocalConfig
+from ..generators.problem_generator import ProblemGenerator
+from ..models.problem import Problem
+from ..helpers.terminal.arg_helper import ArgHelper
 
 
 class ProblemMediator:

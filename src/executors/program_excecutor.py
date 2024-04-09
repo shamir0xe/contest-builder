@@ -1,7 +1,7 @@
-from src.executors.cpp_executor import CppExecutor
-from src.executors.python_executor import PythonExecutor
-from src.executors.executor import Executor
-from src.models.problem import Problem
+from ..executors.cpp_executor import CppExecutor
+from ..executors.python_executor import PythonExecutor
+from ..executors.executor import Executor
+from ..models.problem import Problem
 from pylib_0xe.buffer_io.buffer_writer import BufferWriter
 
 

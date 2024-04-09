@@ -1,5 +1,5 @@
 import re
-from src.types.name_types import NameTypes
+from ...types.name_types import NameTypes
 
 
 class ProblemHelper:

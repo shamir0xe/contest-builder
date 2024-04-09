@@ -1,5 +1,5 @@
-from src.helpers.config.local_config import LocalConfig
-from src.models.language import Language
+from ....helpers.config.local_config import LocalConfig
+from ....models.language import Language
 
 
 class LanguageFinder:

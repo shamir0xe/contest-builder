@@ -2,7 +2,7 @@ from __future__ import annotations
 import os
 from typing import Any
 from dataclasses import dataclass, field
-from src.helpers.config.config import Config
+from ...helpers.config.config import Config
 from pylib_0xe.file.file import File
 from pylib_0xe.json.json_helper import JsonHelper
 

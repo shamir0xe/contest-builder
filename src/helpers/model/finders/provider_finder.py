@@ -1,5 +1,5 @@
-from src.helpers.config.local_config import LocalConfig
-from src.models.provider import Provider
+from ....helpers.config.local_config import LocalConfig
+from ....models.provider import Provider
 
 
 class ProviderFinder:

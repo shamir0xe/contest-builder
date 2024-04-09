@@ -1,4 +1,4 @@
-from src.helpers.config.local_config import LocalConfig
+from ...helpers.config.local_config import LocalConfig
 
 
 class CommandHelper:

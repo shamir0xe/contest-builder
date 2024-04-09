@@ -1,8 +1,8 @@
-from src.mediators.contest_mediator import ContestMediator
-from src.mediators.execution_mediator import ExecutionMediator
-from src.mediators.problem_mediator import ProblemMediator
-from src.mediators.init_mediator import InitMediator
-from src.helpers.terminal.cat_helper import CatHelper
+from .src.mediators.contest_mediator import ContestMediator
+from .src.mediators.execution_mediator import ExecutionMediator
+from .src.mediators.problem_mediator import ProblemMediator
+from .src.mediators.init_mediator import InitMediator
+from .src.helpers.terminal.cat_helper import CatHelper
 from pylib_0xe.argument.argument_parser import ArgumentParser
 
 ARG_PREFIX = "--"

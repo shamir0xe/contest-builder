@@ -1,9 +1,9 @@
 from __future__ import annotations
 import os
 from dataclasses import dataclass
-from src.helpers.file.file_helper import FileHelper
-from src.helpers.model.problem_helper import ProblemHelper
-from src.models.contest import Contest
+from ..helpers.file.file_helper import FileHelper
+from ..helpers.model.problem_helper import ProblemHelper
+from ..models.contest import Contest
 
 
 @dataclass

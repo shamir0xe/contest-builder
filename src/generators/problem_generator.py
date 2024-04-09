@@ -1,8 +1,8 @@
 from __future__ import annotations
 import os
 from dataclasses import dataclass
-from src.helpers.file.file_helper import FileHelper
-from src.models.problem import Problem
+from ..helpers.file.file_helper import FileHelper
+from ..models.problem import Problem
 
 
 @dataclass

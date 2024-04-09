@@ -1,6 +1,6 @@
-from src.helpers.model.finders.language_finder import LanguageFinder
-from src.models.language import Language
-from src.models.problem import Problem
+from ..helpers.model.finders.language_finder import LanguageFinder
+from ..models.language import Language
+from ..models.problem import Problem
 from pylib_0xe.file.file import File
 
 
