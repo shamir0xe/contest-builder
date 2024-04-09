@@ -1,6 +1,6 @@
 # Contest Builder
 
-![Python](https://img.shields.io/badge/Python-3.6%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Contest Builder is a Python tool designed to simplify the process of managing programming contest solutions by providing a structured workflow for organizing, compiling, and testing code.
@@ -20,6 +20,7 @@ Contest Builder is a Python tool designed to simplify the process of managing pr
 * [Usage](#usage)
 * [Configuration](#configuration)
 * [Contributing](#contributing)
+* [License](#license)
 
 <!-- vim-markdown-toc -->
 
@@ -67,6 +68,15 @@ You can specify the details of the contest by passing other options as well. The
 - `--name_type <folders_name_type>`
   It can be `alphabetical`, `numerical`, or `roman`.
 
+For example you want to create a codeforces contest with 8 problems, using python language. in order to do this, you
+can simply write:
+
+```bash
+contest-builder --name "Codeforces Round 938 (Div. 3)" --problem_cnt 8 --language py --provider cf
+```
+
+You can set your desired abbreviations for languages and contest providers in the `cb-config`.
+
 2. Compiling and Running Solutions
 
 To compile and run a solution for a specific problem, use the contest-builder command with the --run option:
@@ -75,18 +85,35 @@ To compile and run a solution for a specific problem, use the contest-builder co
 contest-builder --run <problem_name>
 ```
 
-This will compile and execute the solution file for the specified problem. Also if you are located in the
-problem's folder, you can discard the `<problem_name>` and just pass the `--run` option to compile and execute the code.
+This will detect the language you've chosen to write the code, and then
+compiles and executes the solution based on the way it's provided in the
+`cb-config`. If you are located in the
+problem's folder, you can discard the `<problem_name>` and just pass the `--run` option.
+
+Example:
+
+```bash
+contest-builder --run a
+```
 
 3. Creating Structure for Single Problem
 
    You can also create the folder and file structure for a single problem using the contest-builder command with the `--problem` option:
 
 ```bash
-contest-builder --problem <problem_name>
+contest-builder --problem --name <problem_name>
 ```
 
 This will generate the necessary files and directories for the specified problem.
+
+Example:
+
+```bash
+contest-builder --problem --name "Random Problem" --language seepp --provider lc
+```
+
+it will generate `leetcode/problemset/random-problem/random-problem.cpp` and it's
+corresponding input as well.
 
 ## Configuration
 
@@ -98,5 +125,6 @@ Also you need to edit the `compile` and `run` sections in the config file as you
 
 Contributions are welcome! If you have any ideas for improvements or new features, feel free to open an issue or submit a pull request.
 
-License
-Contest Builder is licensed under the MIT License. See the LICENSE file for details.
+## License
+
+Contest Builder is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
