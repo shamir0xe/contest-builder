@@ -9,12 +9,19 @@ class ArgHelper:
     data: dict[str, str] = field(default_factory=dict)
     prefix: str = "--"
 
+    def show_valid_options(self):
+        print(f"available options are: {self.attributes}")
+        return self
+
+    def done(self):
+        exit(0)
+
     def check_help(self, help_keyword="help") -> ArgHelper:
         for key, _ in ArgumentParser.get_options(option_prefix=self.prefix).items():
             key = key.lower()
             if key == help_keyword:
-                print(f"available options are: {self.attributes}")
-                exit(0)
+                self.show_valid_options().done()
+
         return self
 
     def check_args(self, skipps: list[str] = []) -> ArgHelper:
