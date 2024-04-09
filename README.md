@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-Contest Builder is a Python tool designed to simplify the process of managing programming contest solutions by providing a structured workflow for organizing, compiling, and testing code.
+Contest Builder is a CLI tool designed to simplify the process of managing programming contest solutions by providing a structured workflow for organizing, compiling, and testing code.
 
 ## Features
 
