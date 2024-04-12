@@ -2,7 +2,7 @@ from pylib_0xe.config.config import Config as CFG
 from typing import Any
 
 
-class Config(CFG):
+class Config():
     @staticmethod
     def read(selector: str, **kwargs) -> Any:
         config = CFG(file_path=__file__)
