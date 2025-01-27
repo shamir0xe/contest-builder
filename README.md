@@ -1,5 +1,5 @@
 <h1 align="center" style="display: block; font-size: 2.5em; font-weight: bold; margin-block-start: 1em; margin-block-end: 1em;">
-<a name="logo" href="#"><img align="center" src="https://github.com/shamir0xe/contest-builder/blob/main/assets/contest-builder.jpg?raw=true" alt="pylib" style="width:100%;height:100%"/></a>
+<a name="logo" href="#"><img align="center" src="https://github.com/shamir0xe/contest-builder/blob/main/assets/contest-builder.jpg?raw=true" alt="pylib" style="width:50%;"/></a>
 <br/><br/>
 </h1>
 
