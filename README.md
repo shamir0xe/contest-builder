@@ -1,10 +1,8 @@
 <h1 align="center" style="display: block; font-size: 2.5em; font-weight: bold; margin-block-start: 1em; margin-block-end: 1em; border: none;">
 <a name="logo" href="#"><img align="center" src="https://github.com/shamir0xe/contest-builder/blob/main/assets/contest-builder.jpg?raw=true" alt="contest-builder" style="width:66%;"/></a>
-<br/><br/>
+<br/><br/><strong>Contest Builder</strong>
 </h1>
 
-
-# Contest Builder
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
