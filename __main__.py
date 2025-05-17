@@ -1,3 +1,4 @@
+from .src.mediators.url_mediator import URLMediator
 from .src.mediators.contest_mediator import ContestMediator
 from .src.mediators.execution_mediator import ExecutionMediator
 from .src.mediators.problem_mediator import ProblemMediator
@@ -33,6 +34,11 @@ def handle_help():
     CatHelper.meow()
 
 
+def handle_url():
+    """Handle url command, geerate Contest/Problem accordingly"""
+    URLMediator.instance().extract_info().extract_snippet().extract_tests().generate().closure()
+
+
 def main():
     """Main function."""
     if ArgumentParser.is_option("init", option_prefix=ARG_PREFIX):
@@ -42,7 +48,10 @@ def main():
     elif ArgumentParser.is_option("problem", option_prefix=ARG_PREFIX):
         handle_problem()
     elif ArgumentParser.is_option("name", option_prefix=ARG_PREFIX):
+
         handle_contest()
+    elif ArgumentParser.is_option("url", option_prefix=ARG_PREFIX):
+        handle_url()
     else:
         handle_help()
 
