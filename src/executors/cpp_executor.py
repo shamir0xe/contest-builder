@@ -7,8 +7,7 @@ from pylib_0xe.file.file import File
 
 
 class CppExecutor(Executor):
-    @staticmethod
-    def language() -> Language:
+    def language(self) -> Language:
         return LanguageFinder.by_abbreviation("cpp")
 
     def execute(self):

@@ -18,9 +18,8 @@ class Executor(ABC):
     def execute(self):
         pass
 
-    @staticmethod
     @abstractmethod
-    def language() -> Language:
+    def language(self) -> Language:
         pass
 
     def attach_log(self, log: str) -> None:
