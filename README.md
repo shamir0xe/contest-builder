@@ -5,6 +5,7 @@
 
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+[![CI Pipeline](https://github.com/shamir0xe/contest-builder/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/shamir0xe/contest-builder/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 Contest Builder is a CLI tool designed to simplify the process of managing programming contest solutions by providing a structured workflow for organizing, compiling, and testing code.
