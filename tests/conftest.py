@@ -14,79 +14,125 @@ def config_main() -> str:
 
 
 @pytest.fixture
+def general_program_content() -> str:
+    return """
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello World!")
+}
+"""
+
+
+@pytest.fixture
 def templates_json() -> str:
     return """
 {
-    "contest": {
-        "provider": "codeforces",
-        "language": "cpp",
-        "name_type": "alphabetical",
-        "problem_cnt": 4
+  "author": "shamir0xe",
+  "contest": {
+    "provider": "codeforces",
+    "language": "cpp",
+    "name_type": "alphabetical",
+    "problem_cnt": 4
+  },
+  "problem": {
+    "provider": "local",
+    "language": "cpp"
+  },
+  "executor": {
+    "commands": {
+      "cpp": {
+        "compile": "g++ -std=c++17 -O2 -w {} -o out",
+        "run": "./out"
+      },
+      "python": {
+        "run": "python3 {}"
+      },
+      "go": {
+        "compile": "go build -o out {}",
+        "run": "./out"
+      }
+    }
+  },
+  "providers": {
+    "codeforces": {
+      "abbreviations": [
+        "codeforces",
+        "cf",
+        "code"
+      ]
     },
-    "problem": {
-        "provider": "local",
-        "language": "cpp"
+    "leetcode": {
+      "abbreviations": [
+        "leetcode",
+        "lc",
+        "leet"
+      ]
     },
-    "executor": {
-        "commands": {
-            "cpp": {
-                "compile": "g++ -std=c++17 -O2 {} -o out",
-                "run": "./out"
-            },
-            "python": {
-                "run": "python3 {}"
-            }
-        }
+    "atcoder": {
+      "abbreviations": [
+        "atcoder",
+        "at",
+        "atc"
+      ]
     },
-    "providers": {
-        "codeforces": {
-            "abbreviations": [
-                "codeforces",
-                "cf",
-                "code"
-            ]
-        },
-        "leetcode": {
-            "abbreviations": [
-                "leetcode",
-                "lc",
-                "leet"
-            ]
-        },
-        "local": {
-            "abbreviations": [
-                "local"
-            ]
-        }
+    "codewars": {
+      "abbreviations": [
+        "codewars",
+        "cw",
+        "codew"
+      ]
     },
-    "languages": {
-        "cpp": {
-            "abbreviations": [
-                "cpp",
-                "c++",
-                "seepp"
-            ],
-            "extensions": [
-                "cpp",
-                "hpp"
-            ]
-        },
-        "python": {
-            "abbreviations": [
-                "python",
-                "py",
-                "python3"
-            ],
-            "extensions": [
-                "py"
-            ]
-        }
+    "usaco": {
+      "abbreviations": [
+        "usaco",
+        "usa"
+      ]
     },
-    "problemset": {
-        "folder": {
-            "name": "problemset"
-        }
+    "local": {
+      "abbreviations": [
+        "local"
+      ]
+    }
+  },
+  "languages": {
+    "cpp": {
+      "abbreviations": [
+        "cpp",
+        "c++",
+        "seepp"
+      ],
+      "extensions": [
+        "cpp",
+        "hpp"
+      ]
     },
-    "templates": {}
+    "python": {
+      "abbreviations": [
+        "python",
+        "py",
+        "python3"
+      ],
+      "extensions": [
+        "py"
+      ]
+    },
+    "go": {
+      "abbreviations": [
+        "go"
+      ],
+      "extensions": [
+        "go"
+      ]
+    }
+  },
+  "problemset": {
+    "folder": {
+      "name": "problemset"
+    }
+  },
+  "templates": {}
 }
 """

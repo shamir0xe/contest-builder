@@ -27,6 +27,8 @@ class InitMediator(BaseMediator):
     def create_templates(self) -> InitMediator:
         try:
             templates = LocalConfig.read("templates")
+            if not templates:
+                raise Exception()
         except Exception:
             self.append_log("No templates available")
             return self

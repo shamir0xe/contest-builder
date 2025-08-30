@@ -17,7 +17,7 @@ class GeneralExecutor(Executor):
     def check_if_compile_is_available(self):
         self.__compile_vailable = False
         compile_cmd = LocalConfig.read(
-            f"executor.commands.{self.problem.language}.compile"
+            f"executor.commands.{self.problem.language.ext}.compile"
         )
         if not compile_cmd:
             return
@@ -39,7 +39,7 @@ class GeneralExecutor(Executor):
         self.attach_log(f"running {self.problem.name}...")
         input_file = File.read_file(self.problem.full_input_name)
         input_file += "\r\n"
-        command = LocalConfig.read(f"executor.commands.{self.problem.language}.run")
+        command = LocalConfig.read(f"executor.commands.{self.problem.language.ext}.run")
         out, err = SingleProcess(command).run().communicate(input_file)
         if len(err) > 0:
             # we have an error
