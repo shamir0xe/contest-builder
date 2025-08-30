@@ -2,20 +2,21 @@ import os
 from unittest.mock import MagicMock, patch
 from pyfakefs.fake_filesystem import FakeFilesystem
 from pytest_mock import MockerFixture
-from src.helpers.config.local_config import LocalConfig
-from src.helpers.config.config import Config
-from src.helpers.file.file_helper import FileHelper
 from tests.base_test import BaseTest
-from src.cli import app, handle_init
+from src.contest_builder.helpers.config.local_config import LocalConfig
+from src.contest_builder.helpers.config.config import Config
+from src.contest_builder.helpers.file.file_helper import FileHelper
+from src.contest_builder.cli import app, handle_init
 
 
 class TestExecutor(BaseTest):
     def project_init(self, fs: FakeFilesystem, config_main, templates_json):
         fs.create_file(
-            f"{os.path.dirname(__file__)}/../configs/main.json", contents=config_main
+            f"{os.path.dirname(__file__)}/../src/contest_builder/configs/main.json",
+            contents=config_main,
         )
         fs.create_file(
-            f"{os.path.dirname(__file__)}/../templates/template.json",
+            f"{os.path.dirname(__file__)}/../src/contest_builder/templates/template.json",
             contents=templates_json,
         )
         handle_init()
@@ -52,7 +53,9 @@ class TestExecutor(BaseTest):
         sp_run.run.return_value = sp_run
         sp_run.communicate.return_value = "Hello World!", ""
 
-        mock_class = mocker.patch("src.executors.general_executor.SingleProcess")
+        mock_class = mocker.patch(
+            "src.contest_builder.executors.general_executor.SingleProcess"
+        )
         mock_class.side_effect = [sp_compile, sp_run]
 
         self.change_dir(fs)

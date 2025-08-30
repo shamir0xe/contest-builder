@@ -1,6 +1,6 @@
-from src.cli import app
+from src.contest_builder.cli import app
 from unittest.mock import patch
-from src.helpers.config.config import Config
+from src.contest_builder.helpers.config.config import Config
 from .base_test import BaseTest
 
 

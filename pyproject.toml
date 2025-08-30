@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "contest-builder"
-version = "0.0.10"
+version = "0.0.14"
 description = "Competetive Programming Management Tool"
 readme = "README.md"
 authors = [{ name = "shamir0xe", email = "shamir0xe@gmail.com" }]
@@ -28,4 +28,7 @@ dev = ["pytest", "pyfakefs", "pytest-mock"]
 Homepage = "https://github.com/shamir0xe/contest-builder"
 
 [project.scripts]
-contest-builder = "cli:app"
+contest-builder = "contest_builder.cli:app"
+
+[tool.setuptools]
+include-package-data = true

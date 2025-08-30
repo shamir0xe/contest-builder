@@ -1,4 +1,4 @@
-from src.cli import app
+from src.contest_builder.cli import app
 
 if __name__ == "__main__":
     app()

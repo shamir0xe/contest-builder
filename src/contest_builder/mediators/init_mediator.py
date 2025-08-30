@@ -14,7 +14,9 @@ class InitMediator(BaseMediator):
 
     def read_configs(self) -> InitMediator:
         self.name = Config.read("main.config.local")
-        self.template_config = Templates.read("templates", "template.json")
+        self.template_config = Templates.read(
+            "contest_builder", "templates", "template.json"
+        )
         return self
 
     def create_local_config(self) -> InitMediator:
@@ -34,7 +36,9 @@ class InitMediator(BaseMediator):
             return self
         for _, obj in templates.items():
             for _, path in obj.items():
-                FileHelper.write_file(*path, file=Templates.read(*path))
+                FileHelper.write_file(
+                    *path, file=Templates.read("contest_builder", *path)
+                )
         return self
 
     def closure(self) -> InitMediator:
