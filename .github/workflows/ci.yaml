@@ -1,30 +1,34 @@
-name: CI Pipeline with Caching
+name: CI Pipeline
 
 on:
   push:
     branches-ignore:
-      - 'some-branch-to-be-ignored'
+      - "some-branch-to-be-ignored"
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   build-and-test:
     name: Build and Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12"]
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup python
+      - name: Setup python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: 3.12.3
+          python-version: ${{ matrix.python-version }}
 
       - name: Cache pip dependencies
         uses: actions/cache@v4
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('pyproject.toml') }}-${{ matrix.python-version }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -32,6 +36,42 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install .[dev]
+          pip install build
 
       - name: Run tests
         run: pytest
+
+      - name: Build package
+        if: matrix.python-version == '3.12'
+        run: python -m build
+
+      - name: Store the distribution packages for deployment
+        if: matrix.python-version == '3.12'
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+  deploy:
+    name: Manual Deploy to PyPI
+    needs: [build-and-test]
+    runs-on: ubuntu-latest
+
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    environment:
+      name: pypi-release
+      url: https://pypi.org/project/contest-builder/
+
+    steps:
+      - name: Download the distribution packages from the build job
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}

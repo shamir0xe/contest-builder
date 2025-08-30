@@ -4,7 +4,7 @@
 </h1>
 
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.12.3%2B-blue)
 [![CI Pipeline](https://github.com/shamir0xe/contest-builder/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/shamir0xe/contest-builder/actions/workflows/ci.yaml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
